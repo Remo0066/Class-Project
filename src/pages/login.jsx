@@ -1,19 +1,37 @@
 import { useState } from "react";
+
 function Login(){
-      const[email, setEmail] = useState("");
-  const[password, setPassword] = useState("");
-  const handleSubmit=(Event)=>Event.preventDefault();
+    const[formdata,setFormdata]=useState({user:"",pass:""})
 
-    console.log(email,password)
-    return(
-        /* <div className="text-blue-500">HI </div>
+    const print = (e)=>{
+        e.preventDefault();
+        console.log(formdata)
+    };
+   function Dashboard(){
+      const location = setlocation();
+      const[userdata,setuserdata] =useState(" ");
+      fuction displaydata(){
+         setuserdata(location.state);
+         console.log(userdata)
+      }
+   }
+function handlechange(e){
+    e.preventDefault();
+    setFormdata({...formdata,[e.target.name]:e.target.value})
+}
+    return( 
+    <>
+    <form className="flex flex-col" onSubmit={print} >
+        <label>Email </label>
+        <input placeholder="Enter username" required type="text" name="user" onChange={handlechange} />
+    
+        <label>Password </label>
+        <input placeholder="Enter Password" required type="password" name="pass" onChange={handlechange} />
 
-   <input type="email" required placeholder="Enter your email" value={email} onChange={(param) => setEmail(param.target.value)} />
-   <input type="password" required placeholder="Enter your password" value={password} onChange={(param) => setPassword(param.target.value)} />
-   <button type="sumbit" onClick={()=>print()}>sumbit</button>} */
-      <form onSubmit={handleSubmit}>
-   <input type="email" required placeholder="Enter your email" value={email} onChange={(param) => setEmail(param.target.value)} />
-   <input type="password" required placeholder="Enter your password" value={password} onChange={(param) => setPassword(param.target.value)} />
-   <button type="submit" onClick={()=>console.log(email,password)}>submit</button>
-      </form>)
-} export default Login;
+        <button type="submit">Submit</button>
+    </form>
+ 
+    </>
+    );
+}
+export default Login;
